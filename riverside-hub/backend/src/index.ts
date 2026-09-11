@@ -1,0 +1,1 @@
+// how do i install all of these  npm install express cors dotenv jose pg express + cors: the API server itself. dotenv: load environment variables from .env. jose: verifies Supabase's asymmetric JWTs against their public key set — this replaces the older jsonwebtoken-with-a-shared-secret approach. pg: raw Postgres client, matching how you built the job tracker.
