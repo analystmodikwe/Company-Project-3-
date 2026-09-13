@@ -66,6 +66,7 @@ export async function verifyAuth(
     req.user = { id: userId, role: result.rows[0].role };
     next();
   } catch (err) {
+    console.error("JWT verification failed:", err); // temporary debug line
     res.status(401).json({ error: "Invalid or expired token" });
-  }
+}
 }
