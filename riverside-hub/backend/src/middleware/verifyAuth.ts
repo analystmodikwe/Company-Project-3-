@@ -11,7 +11,10 @@ import { pool } from "../db/pool";
 // Fetches and caches Supabase's public keys — created once at startup,
 // not per-request, since jose handles caching/rotation internally.
 const JWKS = createRemoteJWKSet(
-  new URL(`${env.SUPABASE_URL}/auth/v1/jwks`)
+  new URL(`${env.SUPABASE_URL}/auth/v1/jwks`),
+  {
+    headers: { apikey: env.SUPABASE_ANON_KEY },
+  }
 );
 
 declare global {
