@@ -21,6 +21,9 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/bookings", bookingsRouter);
 
+app.use("/api", donationsRouter);
+app.use("/api/staff", adminRouter);
+app.use("/api/notifications", notificationsRouter);
 
 // Public — no auth needed
 app.get("/api/health", (_req, res) => {
