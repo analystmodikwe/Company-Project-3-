@@ -8,10 +8,15 @@ import { env } from "./config/env";
 import { verifyAuth } from "./middleware/verifyAuth";
 import { requireRole } from "./middleware/requireRole";
 import { resourcesRouter } from "./routes/resources";
+import { bookingsRouter } from "./routes/bookings";
+
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/bookings", bookingsRouter);
+
 
 // Public — no auth needed
 app.get("/api/health", (_req, res) => {
