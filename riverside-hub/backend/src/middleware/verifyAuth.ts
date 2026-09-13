@@ -69,3 +69,14 @@ export async function verifyAuth(
   res.status(401).json({ error: "Invalid or expired token" });
 }
 }
+
+export async function verifyTokenOptional(token: string): Promise<string | null> {
+  try {
+    const { payload } = await jwtVerify(token, JWKS, {
+      issuer: `${env.SUPABASE_URL}/auth/v1`,
+    });
+    return typeof payload.sub === "string" ? payload.sub : null;
+  } catch {
+    return null;
+  }
+}
