@@ -7,7 +7,7 @@ import cors from "cors";
 import { env } from "./config/env";
 import { verifyAuth } from "./middleware/verifyAuth";
 import { requireRole } from "./middleware/requireRole";
-
+import { resourcesRouter } from "./routes/resources";
 const app = express();
 
 app.use(cors());
@@ -32,6 +32,8 @@ app.get(
     res.json({ message: "You have staff or admin access." });
   }
 );
+
+app.use("/api/resources", resourcesRouter);
 
 app.listen(env.PORT, () => {
   console.log(`Server running on http://localhost:${env.PORT}`);
