@@ -9,6 +9,10 @@ import { verifyAuth } from "./middleware/verifyAuth";
 import { requireRole } from "./middleware/requireRole";
 import { resourcesRouter } from "./routes/resources";
 import { bookingsRouter } from "./routes/bookings";
+import { donationsRouter } from "./routes/donations";
+import { adminRouter } from "./routes/admin";
+import { notificationsRouter } from "./routes/notifications";
+
 
 
 const app = express();
