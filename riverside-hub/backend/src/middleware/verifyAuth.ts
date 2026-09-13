@@ -1,5 +1,5 @@
-// src/middleware/verifyAuth.ts
-//
+
+
 // Verifies the Supabase access token sent by the frontend and attaches
 // the authenticated user's id + role to the request object.
 
