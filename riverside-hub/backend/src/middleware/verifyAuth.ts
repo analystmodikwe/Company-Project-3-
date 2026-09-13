@@ -5,7 +5,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import { createRemoteJWKSet, jwtVerify } from "jose";
-import { env } from "../config/env.";
+import { env } from "../config/env";
 import { pool } from "../db/pool";
 
 // Fetches and caches Supabase's public keys — created once at startup,
