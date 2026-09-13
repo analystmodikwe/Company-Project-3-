@@ -20,4 +20,6 @@ export const env = {
 
   // Dashboard Project Settings Database Connection string  URI
   DATABASE_URL: requireEnv("DATABASE_URL"),
+
+  SUPABASE_ANON_KEY: requireEnv("SUPABASE_ANON_KEY")
 };
