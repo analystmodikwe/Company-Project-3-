@@ -1,4 +1,4 @@
-
+console.log("DB URL length:", env.DATABASE_URL?.length, "starts with:", env.DATABASE_URL?.slice(0, 20));
 // A single shared Postgres connection pool, reused across every query.
 
 import { Pool } from "pg";
