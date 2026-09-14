@@ -21,6 +21,15 @@ export default function BookResource() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
+
+    const start = new Date(`${date}T${startTime}`);
+    const end = new Date(`${date}T${endTime}`);
+
+    if (end <= start) {
+      setError("End time must be after start time.");
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -28,15 +37,12 @@ export default function BookResource() {
         method: "POST",
         body: JSON.stringify({
           resource_id: resourceId,
-          start_time: new Date(`${date}T${startTime}`).toISOString(),
-          end_time: new Date(`${date}T${endTime}`).toISOString(),
+          start_time: start.toISOString(),
+          end_time: end.toISOString(),
         }),
       });
       navigate("/dashboard");
     } catch (err: any) {
-      // apiFetch throws using the backend's error message directly, so a
-      // 409 conflict shows exactly the friendly message the route sends:
-      // "This resource is already booked for that time slot"
       setError(err.message);
     } finally {
       setSubmitting(false);
