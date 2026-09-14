@@ -35,23 +35,31 @@ export default function Catalogue() {
       </nav>
 
       <main className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Facilities & Equipment</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">
+          Facilities & Equipment
+        </h1>
 
         {loading && <p className="text-gray-500">Loading…</p>}
         {error && <p className="text-red-600">{error}</p>}
 
         <div className="grid gap-4 sm:grid-cols-2">
           {resources.map((r) => (
-            <div key={r.id} className="bg-white border rounded-lg p-5 shadow-sm">
-              <div className="flex justify-between items-start">
-                <h2 className="font-semibold text-gray-900">{r.name}</h2>
-                <span className="text-xs uppercase tracking-wide text-gray-400">{r.type}</span>
+            <Link key={r.id} to={`/book/${r.id}`} className="block">
+              <div className="bg-white border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start">
+                  <h2 className="font-semibold text-gray-900">{r.name}</h2>
+                  <span className="text-xs uppercase tracking-wide text-gray-400">
+                    {r.type}
+                  </span>
+                </div>
+                {r.capacity && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    Capacity: {r.capacity}
+                  </p>
+                )}
+                <p className="text-sm text-gray-600 mt-2">{r.description}</p>
               </div>
-              {r.capacity && (
-                <p className="text-sm text-gray-500 mt-1">Capacity: {r.capacity}</p>
-              )}
-              <p className="text-sm text-gray-600 mt-2">{r.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </main>
