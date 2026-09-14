@@ -1,18 +1,13 @@
 // src/routes/admin.ts
-//
-// Admin-only reporting and member management. Everything here requires
-// staff or admin depending on sensitivity — member directory is
-// staff+admin (per the brief), reports are staff+admin too.
-
 import { Router } from "express";
 import { pool } from "../db/pool";
 import { verifyAuth } from "../middleware/verifyAuth";
 import { requireRole } from "../middleware/requireRole";
 
-export const adminRouter = Router();
+// Mounted at /api/staff
+export const staffRouter = Router();
 
-// GET /api/staff/members — member directory, search/filter, paginated
-adminRouter.get("/members", verifyAuth, requireRole("staff", "admin"), async (req, res) => {
+staffRouter.get("/members", verifyAuth, requireRole("staff", "admin"), async (req, res) => {
   const page = Math.max(1, parseInt(req.query.page as string) || 1);
   const limit = 25;
   const offset = (page - 1) * limit;
@@ -34,18 +29,16 @@ adminRouter.get("/members", verifyAuth, requireRole("staff", "admin"), async (re
   }
 });
 
-// GET /api/admin/reports/summary — bookings this month, total donations, active members
-adminRouter.get("/reports/summary", verifyAuth, requireRole("staff", "admin"), async (_req, res) => {
+// Mounted at /api/admin
+export const adminReportsRouter = Router();
+
+adminReportsRouter.get("/reports/summary", verifyAuth, requireRole("staff", "admin"), async (_req, res) => {
   try {
     const [bookingsThisMonth, totalDonations, activeMembers] = await Promise.all([
-      pool.query(
-        `select count(*) from bookings
-         where created_at >= date_trunc('month', now())`
-      ),
+      pool.query(`select count(*) from bookings where created_at >= date_trunc('month', now())`),
       pool.query(`select coalesce(sum(amount), 0) as total from donations`),
       pool.query(
-        `select count(*) from profiles
-         where membership_expires_at is null or membership_expires_at >= current_date`
+        `select count(*) from profiles where membership_expires_at is null or membership_expires_at >= current_date`
       ),
     ]);
 
