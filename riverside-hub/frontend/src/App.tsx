@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
+import Catalogue from "./pages/Catalogue";
+
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -17,7 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Auth />} />
-        {/* We'll add /catalogue, /dashboard, /admin, /donate as we build them */}
+        {/* We'll add  /dashboard, /admin, /donate as we build them */}
+        <Route path="/catalogue" element={<Catalogue />} />
       </Routes>
     </BrowserRouter>
   );
