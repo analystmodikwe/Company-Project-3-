@@ -27,6 +27,13 @@ export default function Landing() {
         <p className="mt-4 text-gray-600">
           Book facilities, join programmes, and support the Winter Food Parcels drive.
         </p>
+
+        <Link
+  to="/catalogue"
+  className="inline-block mt-6 bg-gray-900 text-white rounded-md px-5 py-2.5 text-sm font-medium"
+>
+  Browse facilities
+</Link>
       </main>
     </div>
   );
