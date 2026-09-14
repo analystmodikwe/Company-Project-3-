@@ -2,8 +2,9 @@
 // Wraps the app and exposes the current Supabase user + session everywhere,
 // so components don't each need to call supabase.auth themselves.
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { Session, User } from "@supabase/supabase-js";
+import { createContext, useContext, useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabaseClient";
 
 interface AuthContextValue {
