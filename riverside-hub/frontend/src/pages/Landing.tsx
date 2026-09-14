@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Landing() {
-  const { user, loading } = useAuth();
+  const { user, role, loading } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -13,9 +13,16 @@ export default function Landing() {
         </span>
         {!loading &&
           (user ? (
-            <Link to="/dashboard" className="text-sm font-medium text-gray-900">
-              My Bookings
-            </Link>
+            <div className="flex items-center">
+              <Link to="/dashboard" className="text-sm font-medium text-gray-900">
+                My Bookings
+              </Link>
+              {(role === "staff" || role === "admin") && (
+                <Link to="/admin" className="text-sm font-medium text-gray-900 ml-4">
+                  Admin
+                </Link>
+              )}
+            </div>
           ) : (
             <Link to="/login" className="text-sm font-medium text-gray-900">
               Log in
