@@ -30,17 +30,19 @@ bookingsRouter.post("/", verifyAuth, async (req, res) => {
       [resource_id, req.user!.id, start_time, end_time]
     );
     res.status(201).json({ booking: result.rows[0] });
-  } catch (err: any) {
-    // Postgres error code 23P01 = exclusion_violation — this is the
-    // double-booking constraint firing. Turn it into a friendly message
-    // instead of a raw Postgres error leaking to the client.
-    if (err.code === "23P01") {
-      res.status(409).json({ error: "This resource is already booked for that time slot" });
-      return;
-    }
-    console.error("Failed to create booking:", err);
-    res.status(500).json({ error: "Failed to create booking" });
+ } catch (err: any) {
+  if (err.code === "23P01") {
+    res.status(409).json({ error: "This resource is already booked for that time slot" });
+    return;
   }
+  // 23514 = check_violation — catches the valid_range constraint
+  if (err.code === "23514") {
+    res.status(400).json({ error: "End time must be after start time" });
+    return;
+  }
+  console.error("Failed to create booking:", err);
+  res.status(500).json({ error: "Failed to create booking" });
+}
 });
 
 // GET /api/bookings/me — member's own bookings, paginated
