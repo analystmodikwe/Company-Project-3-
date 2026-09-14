@@ -1,8 +1,7 @@
 # API Reference
 
-Base URL: `http://localhost:4000/api` (local) — i will replace with the deployed one wheni am done deploying
-backend URL in production.
-
+Base URL: `http://localhost:4000/api` 
+Production: `https://company-project-3.onrender.com/`
 ## Authentication
 
 Protected routes require an `Authorization: Bearer <token>` header, where
