@@ -5,6 +5,7 @@ import Auth from "./pages/Auth";
 import Landing from "./pages/Landing";
 import Catalogue from "./pages/Catalogue";
 import Dashboard from "./pages/Dashboard";
+import BookResource from "./pages/BookResource";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -18,14 +19,27 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+
         <Route path="/login" element={<Auth />} />
+
         {/* We'll add  /admin, /donate as we build them */}
+
         <Route path="/catalogue" element={<Catalogue />} />
+        
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/book/:resourceId"
+          element={
+            <ProtectedRoute>
+              <BookResource />
             </ProtectedRoute>
           }
         />
