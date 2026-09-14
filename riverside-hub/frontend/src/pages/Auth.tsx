@@ -1,7 +1,8 @@
 // src/pages/Auth.tsx
 // Combined signup/login page, toggled with a simple mode switch.
 
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Auth() {
