@@ -6,6 +6,9 @@ import Landing from "./pages/Landing";
 import Catalogue from "./pages/Catalogue";
 import Dashboard from "./pages/Dashboard";
 import BookResource from "./pages/BookResource";
+import Donate from "./pages/Donate";
+
+
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -25,7 +28,7 @@ function App() {
         {/* We'll add  /admin, /donate as we build them */}
 
         <Route path="/catalogue" element={<Catalogue />} />
-        
+
         <Route
           path="/dashboard"
           element={
@@ -43,6 +46,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/donate" element={<Donate />} />
       </Routes>
     </BrowserRouter>
   );
