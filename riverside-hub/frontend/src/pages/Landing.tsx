@@ -1,0 +1,33 @@
+// src/pages/Landing.tsx
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+export default function Landing() {
+  const { user, loading } = useAuth();
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <nav className="border-b bg-white px-6 py-4 flex justify-between items-center">
+        <span className="font-semibold text-gray-900">Riverside Community Hub</span>
+        {!loading && (
+          user ? (
+            <span className="text-sm text-gray-600">Signed in as {user.email}</span>
+          ) : (
+            <Link to="/login" className="text-sm font-medium text-gray-900">
+              Log in
+            </Link>
+          )
+        )}
+      </nav>
+
+      <main className="max-w-3xl mx-auto px-6 py-16 text-center">
+        <h1 className="text-3xl font-bold text-gray-900">
+          A community centre, one place to belong.
+        </h1>
+        <p className="mt-4 text-gray-600">
+          Book facilities, join programmes, and support the Winter Food Parcels drive.
+        </p>
+      </main>
+    </div>
+  );
+}
