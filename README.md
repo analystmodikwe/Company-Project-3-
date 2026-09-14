@@ -1,4 +1,3 @@
-live Deployment: https://company-project-3.vercel.app/
 
 # Riverside Community Hub
 
@@ -9,6 +8,8 @@ with a single web application.
 Public visitors can browse programmes and facilities and donate. Members
 can book rooms/equipment and manage their bookings. Staff/admin approve
 bookings, manage members, and view funder reports.
+
+live Deployment: https://company-project-3.vercel.app/
 
 ## Tech stack
 
