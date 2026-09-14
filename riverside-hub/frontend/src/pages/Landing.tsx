@@ -1,8 +1,6 @@
-
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabaseClient";
-
 
 export default function Landing() {
   const { user, role, loading } = useAuth();
@@ -19,12 +17,15 @@ export default function Landing() {
         </span>
         {!loading &&
           (user ? (
-            <div className="flex items-center">
-              <Link to="/dashboard" className="text-sm font-medium text-gray-900">
+            <div className="flex items-center gap-4">
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium text-gray-900"
+              >
                 My Bookings
               </Link>
               {(role === "staff" || role === "admin") && (
-                <Link to="/admin" className="text-sm font-medium text-gray-900 ml-4">
+                <Link to="/admin" className="text-sm font-medium text-gray-900">
                   Admin
                 </Link>
               )}
