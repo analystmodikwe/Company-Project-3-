@@ -38,6 +38,13 @@ export default function Landing() {
         >
           Browse facilities
         </Link>
+
+        <Link
+          to="/donate"
+          className="inline-block mt-6 ml-3 border border-gray-900 text-gray-900 rounded-md px-5 py-2.5 text-sm font-medium"
+        >
+          Support the food drive
+        </Link>
       </main>
     </div>
   );
