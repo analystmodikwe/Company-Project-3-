@@ -1,9 +1,15 @@
-// src/pages/Landing.tsx
+
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { supabase } from "../lib/supabaseClient";
+
 
 export default function Landing() {
   const { user, role, loading } = useAuth();
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -22,6 +28,12 @@ export default function Landing() {
                   Admin
                 </Link>
               )}
+              <button
+                onClick={handleSignOut}
+                className="text-sm font-medium text-gray-500"
+              >
+                Sign out
+              </button>
             </div>
           ) : (
             <Link to="/login" className="text-sm font-medium text-gray-900">
