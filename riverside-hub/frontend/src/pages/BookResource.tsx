@@ -3,7 +3,8 @@
 // Handles the 409 conflict response from the backend gracefully — that's
 // the exclusion constraint we proved works, surfaced properly in the UI.
 
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { apiFetch } from "../lib/apiClient";
 
